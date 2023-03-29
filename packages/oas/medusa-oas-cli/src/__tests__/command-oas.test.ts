@@ -88,6 +88,7 @@ describe("command oas", () => {
       const outDir = path.resolve(tmpDir, uid())
       await runCLI("oas", ["--type", "admin", "--out-dir", outDir])
       const generatedFilePath = path.resolve(outDir, "admin.oas.json")
+      console.log("YOU SHALL NOT PASS")
       oas = (await readJsonFile(generatedFilePath)) as OpenAPIObject
       console.log("generatedFilePath", generatedFilePath)
 
