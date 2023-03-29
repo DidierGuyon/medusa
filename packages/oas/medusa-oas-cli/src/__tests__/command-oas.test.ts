@@ -27,6 +27,7 @@ const runCLI = async (command: string, options: string[] = []) => {
       cwd: basePath,
       all: true,
     })
+    console.log("runCLI", logs)
   } catch (err) {
     console.error(err)
     throw err
@@ -76,6 +77,7 @@ describe("command oas", () => {
   let tmpDir: string
 
   beforeAll(async () => {
+    console.log("root beforeAll", tmpDir)
     tmpDir = await getTmpDirectory()
   })
 
@@ -83,6 +85,7 @@ describe("command oas", () => {
     let oas: OpenAPIObject
 
     beforeAll(async () => {
+      console.log("nested beforeAll", tmpDir)
       const outDir = path.resolve(tmpDir, uid())
       await runCLI("oas", ["--type", "admin", "--out-dir", outDir])
       const generatedFilePath = path.resolve(outDir, "admin.oas.json")
@@ -90,6 +93,7 @@ describe("command oas", () => {
     })
 
     it("generates oas with admin routes only", async () => {
+      console.log("oas", oas)
       const routes = Object.keys(oas.paths)
       expect(routes.includes("/admin/products")).toBeTruthy()
       expect(routes.includes("/store/products")).toBeFalsy()
