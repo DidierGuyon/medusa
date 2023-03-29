@@ -90,6 +90,7 @@ describe("command oas", () => {
       const generatedFilePath = path.resolve(outDir, "admin.oas.json")
       oas = (await readJsonFile(generatedFilePath)) as OpenAPIObject
       console.log("generatedFilePath", generatedFilePath)
+
       console.log("oas beforeAll", oas)
     })
 
