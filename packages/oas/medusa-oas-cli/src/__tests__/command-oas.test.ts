@@ -77,7 +77,6 @@ describe("command oas", () => {
   let tmpDir: string
 
   beforeAll(async () => {
-    console.log("root beforeAll", tmpDir)
     tmpDir = await getTmpDirectory()
   })
 
@@ -90,6 +89,8 @@ describe("command oas", () => {
       await runCLI("oas", ["--type", "admin", "--out-dir", outDir])
       const generatedFilePath = path.resolve(outDir, "admin.oas.json")
       oas = (await readJsonFile(generatedFilePath)) as OpenAPIObject
+      console.log("generatedFilePath", generatedFilePath)
+      console.log("oas beforeAll", oas)
     })
 
     it("generates oas with admin routes only", async () => {
